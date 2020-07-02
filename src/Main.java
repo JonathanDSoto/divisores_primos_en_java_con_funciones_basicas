@@ -6,39 +6,38 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Scanner teclado = new Scanner(System.in); 
-		int[] arreglo = new int[20];
+		int numero = 0;
+		int[] arreglo;
 		
-		for (int i = 0; i < arreglo.length; i++) {
-			arreglo[i] = (int) (Math.random()*25+1);
-		}
+		System.out.println("Ingrese el número");
+		numero = teclado.nextInt();
 		
-		System.out.println(Arrays.toString(arreglo));
-		
-		arreglo = ordenar(arreglo);
+		arreglo = divisoresPrimos(numero);
 		
 		System.out.println(Arrays.toString(arreglo));
 		
-	} 
-	 
-	static int[] ordenar(int[] a) {
-		boolean mov = true;
-		int box = 0;
+	}   
+	
+	static int[] divisoresPrimos(int n){
+		int[] a = new int[n];
+		int c = 0;
 		
-		while(mov) {
-			
-			mov = false;
-			
-			for (int i = 0; i < a.length; i++) {
+
+		for (int i = 1; i <= n; i++) {
+			if(n%i==0) {
 				
-				if( (i+1)<a.length && a[i] < a[i+1]) {
-					box = a[i+1];
-					a[i+1] = a[i];
-					a[i] = box;
-					mov = true;
+				int cc = 0;
+				for (int j = 1; j <= i; j++) {
+					if (i%j==0) {
+						cc++;
+					}
 				}
+				if(cc==2) {
+					a[c] = i;
+					c++;
+				} 
 				
 			}
-			
 		}
 		
 		return a;
